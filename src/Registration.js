@@ -8,7 +8,7 @@ const Registration = () => {
     password: ""
   });
 
-
+  const [records, setrecords] = useState([]);
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -18,7 +18,11 @@ const Registration = () => {
   }
 
   function handleSubmit(e) {
+    e.preventDefault();
+    // console.log(registerUser)
 
+    setrecords([...records, registerUser]);
+    console.log(records);
   }
 
   return (
@@ -50,6 +54,16 @@ const Registration = () => {
         <br />
         <button type="submit">Register</button>
       </form>
+
+      <div>
+        {
+          records.map((currElem) => {
+            return (
+              <h1>`${currElem.userName} ${currElem.emai} ${currElem.phone} ${currElem.password}` </h1>
+            )
+          })
+        }
+      </div>
     </>
   )
 }
