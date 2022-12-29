@@ -21,8 +21,19 @@ const Registration = () => {
     e.preventDefault();
     // console.log(registerUser)
 
-    setrecords([...records, registerUser]);
-    console.log(records);
+    if (registerUser.userName.length > 0 && registerUser.email.length > 0 && registerUser.phone.length > 0 && registerUser.password.length > 0) {
+      setrecords([...records, registerUser]);
+      console.log(records);
+      setRegisterUser({
+        userName: "",
+        email: "",
+        phone: "",
+        password: ""
+      })
+    }
+    else {
+      alert("Plzz fill all the fields first.");
+    }
   }
 
   return (
@@ -37,19 +48,19 @@ const Registration = () => {
 
         <label htmlFor="email">Enter Email Id</label>
         <br />
-        <input type="text" value={registerUser.email} name="email" id="email" autoComplete="off" onChange={handleInput} />
+        <input type="email" value={registerUser.email} name="email" id="email" autoComplete="off" onChange={handleInput} />
         <br />
         <br />
 
         <label htmlFor="phone">Enter Phone Number</label>
         <br />
-        <input type="text" value={registerUser.phone} name="phone" id="phone" autoComplete="off" onChange={handleInput} />
+        <input type="number" value={registerUser.phone} name="phone" id="phone" autoComplete="off" onChange={handleInput} />
         <br />
         <br />
 
         <label htmlFor="password">Enter Password</label>
         <br />
-        <input type="text" value={registerUser.password} name="password" id="password" autoComplete="off" onChange={handleInput} />
+        <input type="password" value={registerUser.password} name="password" id="password" autoComplete="off" onChange={handleInput} />
         <br />
         <br />
         <button type="submit">Register</button>
@@ -59,7 +70,7 @@ const Registration = () => {
         {
           records.map((currElem) => {
             return (
-              <h1>`${currElem.userName} ${currElem.emai} ${currElem.phone} ${currElem.password}` </h1>
+              <h1>{currElem.userName} {currElem.email} {currElem.phone} {currElem.password} </h1>
             )
           })
         }
